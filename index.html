@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cursos de IA | Hero Landing</title>
+  <style>
+    :root {
+      --bg-deep: #020617;
+      --emerald: #10b981;
+      --emerald-bright: #34d399;
+      --text: #f8fafc;
+      --muted: #a7f3d0;
+      --glass: rgba(255, 255, 255, 0.12);
+      --glass-border: rgba(255, 255, 255, 0.24);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--bg-deep);
+    }
+
+    .hero {
+      position: relative;
+      isolation: isolate;
+      min-height: 100vh;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(16, 185, 129, 0.42), transparent 32rem),
+        radial-gradient(circle at 82% 24%, rgba(52, 211, 153, 0.28), transparent 28rem),
+        linear-gradient(135deg, #020617 0%, #052e2b 50%, #021713 100%);
+      padding: 1.25rem clamp(1rem, 3vw, 3rem) 4rem;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 4rem 4rem;
+      mask-image: linear-gradient(to bottom, black, transparent 86%);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 42rem;
+      height: 42rem;
+      right: -18rem;
+      bottom: -20rem;
+      z-index: -1;
+      border-radius: 50%;
+      background: rgba(16, 185, 129, 0.2);
+      filter: blur(20px);
+    }
+
+    .nav {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 1rem;
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      padding: 0.9rem 0;
+    }
+
+    .logo {
+      justify-self: start;
+      color: var(--text);
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: clamp(1rem, 3vw, 2.4rem);
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(248, 250, 252, 0.78);
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 180ms ease, transform 180ms ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--emerald-bright);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta {
+      justify-self: end;
+    }
+
+    .glass-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.8rem;
+      padding: 0 1.25rem;
+      border: 1px solid var(--glass-border);
+      border-radius: 999px;
+      color: var(--text);
+      font-weight: 800;
+      text-decoration: none;
+      background: var(--glass);
+      box-shadow: 0 10px 35px rgba(16, 185, 129, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(16px) saturate(145%);
+      -webkit-backdrop-filter: blur(16px) saturate(145%);
+      transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease, border-color 220ms ease;
+    }
+
+    .glass-button:hover {
+      transform: translateY(-3px) scale(1.02);
+      border-color: rgba(167, 243, 208, 0.65);
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 18px 55px rgba(52, 211, 153, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.36);
+    }
+
+    .hero-content {
+      display: grid;
+      place-items: center;
+      width: min(940px, 100%);
+      min-height: calc(100vh - 8rem);
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.35rem;
+      padding: 0.45rem 0.8rem;
+      border: 1px solid rgba(167, 243, 208, 0.26);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 700;
+      background: rgba(2, 6, 23, 0.38);
+    }
+
+    .hero h1 {
+      max-width: 12ch;
+      margin: 0 auto;
+      font-size: clamp(3rem, 10vw, 7.5rem);
+      line-height: 0.88;
+      letter-spacing: -0.08em;
+    }
+
+    .hero p {
+      max-width: 42rem;
+      margin: 1.5rem auto 2.2rem;
+      color: rgba(209, 250, 229, 0.82);
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .primary-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3.25rem;
+      padding: 0 1.5rem;
+      border-radius: 999px;
+      color: #022c22;
+      font-weight: 900;
+      text-decoration: none;
+      background: linear-gradient(135deg, #6ee7b7, #10b981);
+      box-shadow: 0 20px 60px rgba(16, 185, 129, 0.35);
+    }
+
+    @media (max-width: 760px) {
+      .hero {
+        padding-top: 0.75rem;
+      }
+
+      .nav {
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+
+      .logo,
+      .nav-cta {
+        justify-self: center;
+      }
+
+      .nav-links {
+        order: 3;
+        width: 100%;
+        gap: 0.85rem;
+        padding-top: 0.45rem;
+        overflow-x: auto;
+      }
+
+      .nav-links a {
+        white-space: nowrap;
+        font-size: 0.9rem;
+      }
+
+      .hero-content {
+        min-height: auto;
+        padding: 5rem 0 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <nav class="nav" aria-label="Navegación principal">
+      <a class="logo" href="#">IAcademy</a>
+
+      <ul class="nav-links">
+        <li><a href="#cursos">Cursos</a></li>
+        <li><a href="#mentores">Mentores</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#precios">Precios</a></li>
+      </ul>
+
+      <a class="glass-button nav-cta" href="#inscripcion">Inscríbete</a>
+    </nav>
+
+    <section class="hero-content" aria-labelledby="hero-title">
+      <div>
+        <span class="eyebrow">✨ Nueva cohorte: IA aplicada desde cero</span>
+        <h1 id="hero-title">Domina la IA generativa</h1>
+        <p>
+          Aprende a crear automatizaciones, agentes inteligentes y productos con IA con clases prácticas,
+          mentores expertos y proyectos listos para tu portafolio.
+        </p>
+        <div class="hero-actions">
+          <a class="primary-button" href="#cursos">Ver cursos</a>
+          <a class="glass-button" href="#demo">Ver demo gratis</a>
+        </div>
+      </div>
+    </section>
+  </header>
+</body>
+</html>
